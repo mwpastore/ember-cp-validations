@@ -145,7 +145,10 @@ const Base = Ember.Object.extend({
    * @return {Mixed} value
    */
   getValue() {
-    let value = this.value(get(this, 'model'), get(this, 'attribute'));
+    let value = (typeof this.value === 'function')
+      ? this.value(get(this, 'model'), get(this, 'attribute'))
+      : get(this, 'value');
+
     return getValidatableValue(value);
   },
 
